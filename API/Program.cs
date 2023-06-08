@@ -18,7 +18,7 @@ namespace API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<SightseeingdbContext>(options
-                 => options.UseMySQL("server=localhost;user=root;password=12345;database=sightseeingdb;"));
+                 => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
             
             var app = builder.Build();
 
