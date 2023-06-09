@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DAL.Entities
+﻿namespace DAL.Entities
 {
     public class GuideTour
     {
@@ -12,6 +6,5 @@ namespace DAL.Entities
         public uint TourId { get; set; }
         public Guide Guide { get; set; }
         public Tour Tour { get; set; }
-
     }
 }

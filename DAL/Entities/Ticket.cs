@@ -1,19 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace DAL.Entities;
 
-namespace DAL.Entities;
-
-public partial class Ticket
+public class Ticket
 {
     public uint TicketId { get; set; }
-
     public uint TourId { get; set; }
-
     public DateTime TicketDate { get; set; }
-
     public uint UserId { get; set; }
-
-    public virtual Tour Tour { get; set; } = null!;
-
-    public virtual User User { get; set; } = null!;
+    public Tour Tour { get; set; } = null!;
+    public User User { get; set; } = null!;
 }

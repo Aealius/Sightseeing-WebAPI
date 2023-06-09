@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace DAL.Entities;
 
-namespace DAL.Entities;
-
-public partial class Tour
+public class Tour
 {
     public uint TourId { get; set; }
-
     public uint Price { get; set; }
-
-    public virtual ICollection<Ticket> Tickets { get; set; }
-
-    public virtual ICollection<GuideTour> GuideTours { get; set; }
-
-    public virtual ICollection<TourSight> TourSights { get; set; }
+    public ICollection<Ticket> Tickets { get; set; }
+    public ICollection<GuideTour> GuideTours { get; set; }
+    public ICollection<TourSight> TourSights { get; set; }
 }
