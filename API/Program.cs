@@ -1,6 +1,5 @@
 using DAL;
 using Microsoft.EntityFrameworkCore;
-using System.Configuration;
 
 namespace API
 {
@@ -10,16 +9,8 @@ namespace API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-        
-            // Add services to the container.
+            builder.Services.AddServices(builder.Configuration);
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<SightseeingdbContext>(options
-                 => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
-            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
