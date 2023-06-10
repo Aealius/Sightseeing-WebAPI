@@ -1,6 +1,6 @@
 ﻿using DAL.Entities;
-using DAL.EntitiesConfigurations;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace DAL;
 
@@ -34,22 +34,6 @@ public partial class SightseeingdbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new GuideTourConfiguration());
-
-        modelBuilder.ApplyConfiguration(new TourSightConfiguration());
-
-        modelBuilder.ApplyConfiguration(new GuideConfiguration());
-
-        modelBuilder.ApplyConfiguration(new ReviewConfiguration());
-
-        modelBuilder.ApplyConfiguration(new RoleConfiguration());
-
-        modelBuilder.ApplyConfiguration(new SightConfiguration());
-
-        modelBuilder.ApplyConfiguration(new TicketConfiguration());
-
-        modelBuilder.ApplyConfiguration(new TourConfiguration());   
-
-        modelBuilder.ApplyConfiguration(new UserConfiguration());
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 }
