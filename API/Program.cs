@@ -1,3 +1,6 @@
+using DAL;
+using Microsoft.EntityFrameworkCore;
+
 namespace API
 {
     public class Program
@@ -6,12 +9,11 @@ namespace API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services
+                .ConfigureMySQL(builder.Configuration)
+                .ConfigureSwagger()
+                .ConfigureControllers()
+                .ConfigureApiExplorer();
 
             var app = builder.Build();
 

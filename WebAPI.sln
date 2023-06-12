@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{FABA808B-294E-4821-AD5C-25CDA5FEC358}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{FABA808B-294E-4821-AD5C-25CDA5FEC358}"
+	ProjectSection(ProjectDependencies) = postProject
+		{337FFB07-486F-4787-907A-76B0ADF6ED92} = {337FFB07-486F-4787-907A-76B0ADF6ED92}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{337FFB07-486F-4787-907A-76B0ADF6ED92}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{337FFB07-486F-4787-907A-76B0ADF6ED92}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{3CF680DC-13D5-4118-A9F5-8856CB63366F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{3CF680DC-13D5-4118-A9F5-8856CB63366F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
