@@ -1,6 +1,5 @@
 ﻿using DAL;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 
 namespace API
@@ -10,6 +9,7 @@ namespace API
         public static IServiceCollection ConfigureApiExplorer (this IServiceCollection services)
         {
             services.AddEndpointsApiExplorer();
+
             return services;
         }
 
@@ -17,6 +17,7 @@ namespace API
         {
             services.AddDbContext<SightseeingdbContext>(options
                  => options.UseMySQL(configuration.GetConnectionString("DefaultConnection")));
+
             return services;
         }
 
@@ -31,15 +32,16 @@ namespace API
                     Title = "Sightseeing API",
                     Description = "An ASP.NET Core Web API for sights"
                 });
-
             });
+
             return services;
         }
+
         public static IServiceCollection ConfigureControllers(this IServiceCollection services)
         {
             services.AddControllers();
+
             return services;
         }
-
     }
 }
