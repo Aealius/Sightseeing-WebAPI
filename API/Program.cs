@@ -9,7 +9,11 @@ namespace API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddServices(builder.Configuration);
+            builder.Services
+                .ConfigureMySQL(builder.Configuration)
+                .ConfigureSwagger()
+                .ConfigureControllers()
+                .ConfigureApiExplorer();
 
             var app = builder.Build();
 
