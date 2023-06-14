@@ -12,7 +12,11 @@ namespace BLL.Validation
     {
         public TicketValidator()
         {
-            RuleFor(t => t.TicketDate).NotEmpty();
+            RuleFor(t => t.TicketId).NotNull();
+            RuleFor(t => t.UserId).NotNull();
+            RuleFor(t => t.TourId).NotNull();
+            RuleFor(t => t.TicketDate).NotEmpty()
+                .InclusiveBetween(new DateTime(1971, 1, 1), DateTime.Now.AddYears(-10)); ;
         }
     }
 }

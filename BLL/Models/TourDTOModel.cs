@@ -10,7 +10,6 @@ namespace BLL.Models
     internal class TourDTOModel
     {
         public uint TourId { get; set; }
-        [RegularExpression(@"^\d+(,\d{1,2})?$", ErrorMessage = "Invalid Data Type")]
         public uint Price { get; set; }
     }
 }

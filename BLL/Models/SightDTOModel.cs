@@ -10,7 +10,6 @@ namespace BLL.Models
     internal class SightDTOModel
     {
         public uint SightId { get; set; }
-        [RegularExpression(@"^[0-9](,)[0-9]|10,0", ErrorMessage = "Invalid Data Type")]
         public string? Note { get; set; }
         public string City { get; set; }
         public string Zip { get; set; }

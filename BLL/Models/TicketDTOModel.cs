@@ -11,7 +11,6 @@ namespace BLL.Models
     {
         public uint TicketId { get; set; }
         public uint TourId { get; set; }
-        [RegularExpression(@"(0?[1-9]|[12][0-9]|3[01])(.)(0?[1-9]|1[012])(.)((19|20)\d\d)", ErrorMessage = "Invalid Data Type")]
         public DateTime TicketDate { get; set; }
         public uint UserId { get; set; }
     }
