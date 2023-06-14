@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {
-    internal class GuideModel
+    internal class GuideTourDTOModel
     {
         public uint GuideId { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; } 
-        public string PhoneNum { get; set; }
+        public uint TourId { get; set; }
     }
 }

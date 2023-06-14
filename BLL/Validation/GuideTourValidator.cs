@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Models
+namespace BLL.Validation
 {
-    internal class TourModel
+    internal class GuideTourValidator
     {
-        public uint TourId { get; set; }
-        public uint Price { get; set; }
     }
 }

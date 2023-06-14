@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {
-    internal class RoleModel
+    internal class TourSightDTOModel
     {
-        public uint RoleId { get; set; }
-        public string Name { get; set; } = null!;
+        public uint TourId { get; set; }
+        public uint SightId { get; set; }
     }
 }

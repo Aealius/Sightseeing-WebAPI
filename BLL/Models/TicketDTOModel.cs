@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Models
 {
-    internal class TicketModel
+    internal class TicketDTOModel
     {
         public uint TicketId { get; set; }
         public uint TourId { get; set; }
