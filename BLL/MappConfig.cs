@@ -31,9 +31,15 @@ namespace BLL
             var _configGuideTour = new MapperConfiguration(cfg => cfg.CreateMap<GuideTour, GuideTourDTOModel>().ReverseMap());
             _GuideTourMapper = new Mapper(_configGuideTour);
             var _configReview = new MapperConfiguration(cfg => cfg.CreateMap<Review, ReviewDTOModel>().ReverseMap());
-            _GuideMapper = new Mapper(_configReview);
+            _ReviewMapper = new Mapper(_configReview);
             var _configRole = new MapperConfiguration(cfg => cfg.CreateMap<Role, RoleDTOModel>().ReverseMap());
-            _GuideMapper = new Mapper(_configRole);
+            _RoleMapper = new Mapper(_configRole);
+            var _configTicket = new MapperConfiguration(cfg => cfg.CreateMap<Ticket, TicketDTOModel>().ReverseMap());
+            _TicketMapper = new Mapper(_configTicket);
+            var _configTourSight = new MapperConfiguration(cfg => cfg.CreateMap<TourSight, TourSightDTOModel>().ReverseMap());
+            _TourSightMapper = new Mapper(_configTourSight);
+            var _configUser = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTOModel>().ReverseMap());
+            _UserMapper = new Mapper(_configUser);
         }
     }
 }
