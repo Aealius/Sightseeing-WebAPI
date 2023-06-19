@@ -1,4 +1,5 @@
 ﻿using DAL;
+using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -40,6 +41,13 @@ namespace API
         public static IServiceCollection ConfigureControllers(this IServiceCollection services)
         {
             services.AddControllers();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureRepositoryWrapper(this IServiceCollection services)
+        {
+            services.AddSingleton<IUnitOfWork,IUnitOfWork> ();
 
             return services;
         }
