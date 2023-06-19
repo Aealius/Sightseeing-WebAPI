@@ -23,6 +23,7 @@ namespace DAL.UnitOfWork
         }
 
         public IGuideRepository Guides { 
+
             get  
             {
                 _guideRepository ??= new GuideRepository(_context);
@@ -30,6 +31,7 @@ namespace DAL.UnitOfWork
             }
         }
         public IGuideTourRepository GuideTours {
+
             get 
             {
                 _guideTourRepository ??= new GuideTourRepository(_context);
@@ -37,6 +39,7 @@ namespace DAL.UnitOfWork
             } 
         }
         public IReviewRepository Reviews {
+
             get 
             {
                 _reviewRepository ??= new ReviewRepository(_context);
@@ -44,6 +47,7 @@ namespace DAL.UnitOfWork
             } 
         }
         public IRoleRepository Roles {
+
             get
             {
                 _roleRepository ??= new RoleRepository(_context);
@@ -51,6 +55,7 @@ namespace DAL.UnitOfWork
             } 
         }
         public ISightRepository Sights {
+
             get
             {
                 _sightRepository ??= new SightRepository(_context);
@@ -58,6 +63,7 @@ namespace DAL.UnitOfWork
             } 
         }
         public ITicketRepository Tickets { 
+
             get 
             {
                 _ticketRepository ??= new TicketRepository(_context);
@@ -65,6 +71,7 @@ namespace DAL.UnitOfWork
             } 
         }
         public ITourRepository Tours { 
+
             get 
             {
                 _tourRepository ??= new TourRepository(_context);
@@ -72,6 +79,7 @@ namespace DAL.UnitOfWork
             } 
         }
         public ITourSightRepository TourSights {
+
             get 
             {
                 _tourSightRepository ??= new TourSightRepository(_context);
@@ -79,6 +87,7 @@ namespace DAL.UnitOfWork
             }
         }
         public IUserRepository Users { 
+
             get 
             {
                 _userRepository ??= new UserRepository(_context);

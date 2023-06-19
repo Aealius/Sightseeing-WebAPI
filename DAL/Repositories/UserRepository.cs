@@ -20,6 +20,7 @@ namespace DAL.Repositories
                                .Include(user => user.Tickets)
                                .AsNoTracking()
                                .ToListAsync();
+
             return items;
         }
 

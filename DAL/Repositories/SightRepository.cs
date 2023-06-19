@@ -19,6 +19,7 @@ namespace DAL.Repositories
                                       .ThenInclude(t => t.Tour)
                                       .AsNoTracking()
                                       .ToListAsync();
+
             return items;
         }
 
