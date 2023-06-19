@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace BLL.MappConfigs
 {
-    internal class SightMappConfig
+    internal class SightMappConfig : Profile
     {
-        private Mapper _SightMapper;
         public SightMappConfig()
         {
-            var _configSight = new MapperConfiguration(cfg => cfg.CreateMap<Sight, SightDTOModel>().ReverseMap());
-            _SightMapper = new Mapper(_configSight);
+            CreateMap<Sight, SightDTOModel>(); 
         }
     }
 }

@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace BLL.MappConfigs
 {
-    internal class UserMappConfig
+    internal class UserMappConfig : Profile
     {
-        private Mapper _UserMapper;
         public UserMappConfig()
         {
-            var _configUser = new MapperConfiguration(cfg => cfg.CreateMap<User, UserDTOModel>().ReverseMap());
-            _UserMapper = new Mapper(_configUser);
+            CreateMap<User, UserDTOModel>(); 
         }
     }
 }

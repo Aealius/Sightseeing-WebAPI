@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace BLL.MappConfigs
 {
-    internal class ReviewMappConfig
+    internal class ReviewMappConfig : Profile
     {
-        private Mapper _ReviewMapper;
         public ReviewMappConfig()
         {
-            var _configReview = new MapperConfiguration(cfg => cfg.CreateMap<Review, ReviewDTOModel>().ReverseMap());
-            _ReviewMapper = new Mapper(_configReview);
+            CreateMap<Review, ReviewDTOModel>();
         }
     }
 }

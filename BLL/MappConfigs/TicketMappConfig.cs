@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace BLL.MappConfigs
 {
-    internal class TicketMappConfig
+    internal class TicketMappConfig : Profile
     {
-        private Mapper _TicketMapper;
         public TicketMappConfig()
         {
-            var _configTicket = new MapperConfiguration(cfg => cfg.CreateMap<Ticket, TicketDTOModel>().ReverseMap());
-            _TicketMapper = new Mapper(_configTicket);
+            CreateMap<Ticket, TicketDTOModel>(); 
         }
     }
 }

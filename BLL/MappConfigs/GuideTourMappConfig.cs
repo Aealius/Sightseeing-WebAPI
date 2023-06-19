@@ -9,13 +9,11 @@ using System.Threading.Tasks;
 
 namespace BLL.MappConfigs
 {
-    internal class GuideTourMappConfig
+    internal class GuideTourMappConfig : Profile
     {
-        private Mapper _GuideTourMapper;
         public GuideTourMappConfig()
         {
-            var _configGuideTour = new MapperConfiguration(cfg => cfg.CreateMap<GuideTour, GuideTourDTOModel>().ReverseMap());
-            _GuideTourMapper = new Mapper(_configGuideTour);
+            CreateMap<GuideTour, GuideTourDTOModel>();
         }
     }
 }
