@@ -13,7 +13,8 @@ namespace API
                 .ConfigureMySQL(builder.Configuration)
                 .ConfigureSwagger()
                 .ConfigureControllers()
-                .ConfigureApiExplorer();
+                .ConfigureApiExplorer()
+                .ConfigureRepositoryWrapper();
 
             var app = builder.Build();
 
