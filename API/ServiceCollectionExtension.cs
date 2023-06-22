@@ -47,7 +47,7 @@ namespace API
 
         public static IServiceCollection ConfigureRepositoryWrapper(this IServiceCollection services)
         {
-            services.AddSingleton<IUnitOfWork,IUnitOfWork> ();
+            services.AddScoped<IUnitOfWork,UnitOfWork> ();
 
             return services;
         }
