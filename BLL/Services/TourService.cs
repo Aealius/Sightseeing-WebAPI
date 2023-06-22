@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
-using DAL.Repositories;
-using FluentValidation;
+using DAL.Repository_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,47 +12,56 @@ namespace BLL.Services
 {
     internal class TourService
     {
-        private readonly BaseRepository<Tour> repository;
-        private readonly IMapper mapper;
-        public TourService(BaseRepository<Tour> repository, IMapper mapper)
+        private readonly IBaseRepository<Tour> _repository;
+        private readonly IMapper _mapper;
+
+        public TourService(IBaseRepository<Tour> repository, IMapper mapper)
         {
-            this.repository = repository;
-            this.mapper = mapper;
+            _repository = repository;
+            _mapper = mapper;
         }
+
         public async Task<TourDTOModel> Add(TourDTOModel addTourDTO)
         {
-            var tour = mapper.Map<Tour>(addTourDTO);
-            await repository.AddAsync(tour);
-            return mapper.Map<TourDTOModel>(tour);
+            var tour = _mapper.Map<Tour>(addTourDTO);
+            await _repository.AddAsync(tour);
+
+            return _mapper.Map<TourDTOModel>(tour);
         }
+
         public async Task<TourDTOModel> Delete(int id)
         {
-            var tour = repository.GetByIdAsync(id);
-            await repository.DeleteAsync(id);
-            return mapper.Map<TourDTOModel>(tour);
+            var tour = _repository.GetByIdAsync(id);
+            await _repository.DeleteAsync(id);
+
+            return _mapper.Map<TourDTOModel>(tour);
         }
+
         public async Task<List<TourDTOModel>> GetAll()
         {
-            var tours = await repository.GetAllAsync();
+            var tours = await _repository.GetAllAsync();
             var toursDTOList = new List<TourDTOModel>();
             foreach (var tour in tours)
             {
-                toursDTOList.Add(mapper.Map<Tour, TourDTOModel>(tour));
+                toursDTOList.Add(_mapper.Map<Tour, TourDTOModel>(tour));
             }
+
             return toursDTOList;
         }
+
         public async Task<TourDTOModel> GetById(int id)
         {
-            var tour = repository.GetByIdAsync(id);
-            if (tour == null)
-                throw new ValidationException("Tour not found");
-            return mapper.Map<TourDTOModel>(tour);
+            var tour = _repository.GetByIdAsync(id);
+
+            return _mapper.Map<TourDTOModel>(tour);
         }
+
         public async Task<TourDTOModel?> Update(int id, TourDTOModel updateTourDTO)
         {
-            var tour = mapper.Map<Tour>(updateTourDTO);
-            await repository.UpdateAsync(id, tour);
-            return mapper.Map<TourDTOModel>(tour);
+            var tour = _mapper.Map<Tour>(updateTourDTO);
+            await _repository.UpdateAsync(id, tour);
+
+            return _mapper.Map<TourDTOModel>(tour);
         }
     }
 }

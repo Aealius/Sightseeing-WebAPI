@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
-using DAL.Repositories;
-using FluentValidation;
+using DAL.Repository_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,47 +12,56 @@ namespace BLL.Services
 {
     internal class TourSightService
     {
-        private readonly BaseRepository<TourSight> repository;
-        private readonly IMapper mapper;
-        public TourSightService(BaseRepository<TourSight> repository, IMapper mapper)
+        private readonly IBaseRepository<TourSight> _repository;
+        private readonly IMapper _mapper;
+
+        public TourSightService(IBaseRepository<TourSight> repository, IMapper mapper)
         {
-            this.repository = repository;
-            this.mapper = mapper;
+            _repository = repository;
+            _mapper = mapper;
         }
+
         public async Task<TourSightDTOModel> Add(TourSightDTOModel addTourSightDTO)
         {
-            var tourSight = mapper.Map<TourSight>(addTourSightDTO);
-            await repository.AddAsync(tourSight);
-            return mapper.Map<TourSightDTOModel>(tourSight);
+            var tourSight = _mapper.Map<TourSight>(addTourSightDTO);
+            await _repository.AddAsync(tourSight);
+
+            return _mapper.Map<TourSightDTOModel>(tourSight);
         }
+
         public async Task<TourSightDTOModel> Delete(int id)
         {
-            var tourSight = repository.GetByIdAsync(id);
-            await repository.DeleteAsync(id);
-            return mapper.Map<TourSightDTOModel>(tourSight);
+            var tourSight = _repository.GetByIdAsync(id);
+            await _repository.DeleteAsync(id);
+
+            return _mapper.Map<TourSightDTOModel>(tourSight);
         }
+
         public async Task<List<TourSightDTOModel>> GetAll()
         {
-            var tourSights = await repository.GetAllAsync();
+            var tourSights = await _repository.GetAllAsync();
             var tourSightsDTOList = new List<TourSightDTOModel>();
             foreach (var tourSight in tourSights)
             {
-                tourSightsDTOList.Add(mapper.Map<TourSight, TourSightDTOModel>(tourSight));
+                tourSightsDTOList.Add(_mapper.Map<TourSight, TourSightDTOModel>(tourSight));
             }
+
             return tourSightsDTOList;
         }
+
         public async Task<TourSightDTOModel> GetById(int id)
         {
-            var tourSight = repository.GetByIdAsync(id);
-            if (tourSight == null)
-                throw new ValidationException("Sightseeing tour not found");
-            return mapper.Map<TourSightDTOModel>(tourSight);
+            var tourSight = _repository.GetByIdAsync(id);
+
+            return _mapper.Map<TourSightDTOModel>(tourSight);
         }
+
         public async Task<TourSightDTOModel?> Update(int id, TourSightDTOModel updateTourSightDTO)
         {
-            var tourSight = mapper.Map<TourSight>(updateTourSightDTO);
-            await repository.UpdateAsync(id, tourSight);
-            return mapper.Map<TourSightDTOModel>(tourSight);
+            var tourSight = _mapper.Map<TourSight>(updateTourSightDTO);
+            await _repository.UpdateAsync(id, tourSight);
+
+            return _mapper.Map<TourSightDTOModel>(tourSight);
         }
     }
 }

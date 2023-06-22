@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
-using DAL.Repositories;
-using FluentValidation;
+using DAL.Repository_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,47 +12,56 @@ namespace BLL.Services
 {
     internal class GuideService
     {
-        private readonly BaseRepository<Guide> repository;
-        private readonly IMapper mapper;
-        public GuideService(BaseRepository<Guide> repository, IMapper mapper)
+        private readonly IBaseRepository<Guide> _repository;
+        private readonly IMapper _mapper;
+
+        public GuideService(IBaseRepository<Guide> repository, IMapper mapper)
         {
-            this.repository = repository;
-            this.mapper = mapper;
+            _repository = repository;
+            _mapper = mapper;
         }
+
         public async Task<GuideDTOModel> Add(GuideDTOModel guideDTO)
         {
-            var guide = mapper.Map<Guide>(guideDTO);
-            await repository.AddAsync(guide);
-            return mapper.Map<GuideDTOModel>(guide);
+            var guide = _mapper.Map<Guide>(guideDTO);
+            await _repository.AddAsync(guide);
+
+            return _mapper.Map<GuideDTOModel>(guide);
         }
+
         public async Task<GuideDTOModel> Delete(int id)
         {
-            var guide = repository.GetByIdAsync(id);
-            await repository.DeleteAsync(id);
-            return mapper.Map<GuideDTOModel>(guide);
+            var guide = _repository.GetByIdAsync(id);
+            await _repository.DeleteAsync(id);
+
+            return _mapper.Map<GuideDTOModel>(guide);
         }
+
         public async Task<List<GuideDTOModel>> GetAll()
         {
-            var guides = await repository.GetAllAsync();
+            var guides = await _repository.GetAllAsync();
             var guidesDTOList = new List<GuideDTOModel>();
             foreach (var guide in guides)
             {
-                guidesDTOList.Add(mapper.Map<Guide, GuideDTOModel>(guide));
+                guidesDTOList.Add(_mapper.Map<Guide, GuideDTOModel>(guide));
             }
+
             return guidesDTOList;
         }
+
         public async Task<GuideDTOModel> GetById(int id)
         {
-            var guide = repository.GetByIdAsync(id);
-            if (guide == null)
-                throw new ValidationException("Guide not found");
-            return mapper.Map<GuideDTOModel>(guide);
+            var guide = _repository.GetByIdAsync(id);
+
+            return _mapper.Map<GuideDTOModel>(guide);
         }
+
         public async Task<GuideDTOModel?> Update(int id, GuideDTOModel updateGuideDTO)
         {
-            var guide = mapper.Map<Guide>(updateGuideDTO);
-            await repository.UpdateAsync(id, guide);
-            return mapper.Map<GuideDTOModel>(guide);
+            var guide = _mapper.Map<Guide>(updateGuideDTO);
+            await _repository.UpdateAsync(id, guide);
+
+            return _mapper.Map<GuideDTOModel>(guide);
         }
     }
 }

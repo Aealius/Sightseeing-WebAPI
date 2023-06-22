@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
-using DAL.Repositories;
-using FluentValidation;
+using DAL.Repository_Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,47 +12,56 @@ namespace BLL.Services
 {
     internal class SightService
     {
-        private readonly BaseRepository<Sight> repository;
-        private readonly IMapper mapper;
-        public SightService(BaseRepository<Sight> repository, IMapper mapper)
+        private readonly IBaseRepository<Sight> _repository;
+        private readonly IMapper _mapper;
+
+        public SightService(IBaseRepository<Sight> repository, IMapper mapper)
         {
-            this.repository = repository;
-            this.mapper = mapper;
+            _repository = repository;
+            _mapper = mapper;
         }
+
         public async Task<SightDTOModel> Add(SightDTOModel addSightDTO)
         {
-            var sight = mapper.Map<Sight>(addSightDTO);
-            await repository.AddAsync(sight);
-            return mapper.Map<SightDTOModel>(sight);
+            var sight = _mapper.Map<Sight>(addSightDTO);
+            await _repository.AddAsync(sight);
+
+            return _mapper.Map<SightDTOModel>(sight);
         }
+
         public async Task<SightDTOModel> Delete(int id)
         {
-            var sight = repository.GetByIdAsync(id);
-            await repository.DeleteAsync(id);
-            return mapper.Map<SightDTOModel>(sight);
+            var sight = _repository.GetByIdAsync(id);
+            await _repository.DeleteAsync(id);
+
+            return _mapper.Map<SightDTOModel>(sight);
         }
+
         public async Task<List<SightDTOModel>> GetAll()
         {
-            var sights = await repository.GetAllAsync();
+            var sights = await _repository.GetAllAsync();
             var sightsDTOList = new List<SightDTOModel>();  
             foreach (var sight in sights)
             {
-                sightsDTOList.Add(mapper.Map<Sight, SightDTOModel>(sight));
+                sightsDTOList.Add(_mapper.Map<Sight, SightDTOModel>(sight));
             }
+
             return sightsDTOList;
         }
+
         public async Task<SightDTOModel> GetById(int id)
         {
-            var sight = repository.GetByIdAsync(id);
-            if (sight == null)
-                throw new ValidationException("Sightseeing not found");
-            return mapper.Map<SightDTOModel>(sight);
+            var sight = _repository.GetByIdAsync(id);
+
+            return _mapper.Map<SightDTOModel>(sight);
         }
+
         public async Task<SightDTOModel?> Update(int id, SightDTOModel updateSightDTO)
         {
-            var sight = mapper.Map<Sight>(updateSightDTO);
-            await repository.UpdateAsync(id, sight);
-            return mapper.Map<SightDTOModel>(sight);
+            var sight = _mapper.Map<Sight>(updateSightDTO);
+            await _repository.UpdateAsync(id, sight);
+
+            return _mapper.Map<SightDTOModel>(sight);
         }
     }
 }
