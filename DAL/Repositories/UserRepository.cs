@@ -31,7 +31,7 @@ namespace DAL.Repositories
                                  .Include(user => user.Role)
                                  .Include(user => user.Reviews)
                                  .Include(user => user.Tickets)
-                                 .FirstOrDefaultAsync(user => user.UserId == id);
+                                 .FirstOrDefaultAsync(user => user.UserId.Equals(id));
             
             return item;
         }
