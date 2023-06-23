@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Abp.Domain.Entities;
+using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
 using DAL.Repository_Interfaces;
@@ -52,6 +53,10 @@ namespace BLL.Services
         public async Task<TicketDTOModel> GetById(int id)
         {
             var ticket = _repository.GetByIdAsync(id);
+            if (ticket == null)
+            {
+                throw new EntityNotFoundException("Ticket not found");
+            }
 
             return _mapper.Map<TicketDTOModel>(ticket);
         }

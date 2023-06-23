@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Abp.Domain.Entities;
+using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
 using DAL.Repository_Interfaces;
@@ -52,6 +53,10 @@ namespace BLL.Services
         public async Task<SightDTOModel> GetById(int id)
         {
             var sight = _repository.GetByIdAsync(id);
+            if (sight == null)
+            {
+                throw new EntityNotFoundException("Sightseeing not found");
+            }
 
             return _mapper.Map<SightDTOModel>(sight);
         }

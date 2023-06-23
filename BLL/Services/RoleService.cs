@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Abp.Domain.Entities;
+using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
 using DAL.Repository_Interfaces;
@@ -52,6 +53,10 @@ namespace BLL.Services
         public async Task<RoleDTOModel> GetById(int id)
         {
             var role = _repository.GetByIdAsync(id);
+            if (role == null)
+            {
+                throw new EntityNotFoundException("Role not found");
+            }
 
             return _mapper.Map<RoleDTOModel>(role);
         }

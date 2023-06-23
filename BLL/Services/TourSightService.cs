@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Abp.Domain.Entities;
+using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
 using DAL.Repository_Interfaces;
@@ -52,6 +53,10 @@ namespace BLL.Services
         public async Task<TourSightDTOModel> GetById(int id)
         {
             var tourSight = _repository.GetByIdAsync(id);
+            if (tourSight == null)
+            {
+                throw new EntityNotFoundException("Sightseeing tour not found");
+            }
 
             return _mapper.Map<TourSightDTOModel>(tourSight);
         }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Abp.Domain.Entities;
+using AutoMapper;
 using BLL.Models;
 using DAL.Entities;
 using DAL.Repository_Interfaces;
@@ -52,6 +53,10 @@ namespace BLL.Services
         public async Task<ReviewDTOModel> GetById(int id)
         {
             var review = _repository.GetByIdAsync(id);
+            if (review == null)
+            {
+                throw new EntityNotFoundException("Review not found");
+            }
 
             return _mapper.Map<ReviewDTOModel>(review);
         }
