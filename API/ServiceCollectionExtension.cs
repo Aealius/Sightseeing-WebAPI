@@ -1,4 +1,6 @@
-﻿using DAL;
+﻿using BLL.Services.Contracts;
+using BLL.Services.Implementation;
+using DAL;
 using DAL.UnitOfWork;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -47,7 +49,29 @@ namespace API
 
         public static IServiceCollection ConfigureRepositoryWrapper(this IServiceCollection services)
         {
-            services.AddSingleton<IUnitOfWork,IUnitOfWork> ();
+            services.AddScoped<IUnitOfWork,UnitOfWork> ();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureAppServices(this IServiceCollection services)
+        {
+            services.AddScoped<IGuideService, GuideService>();
+            services.AddScoped<IGuideTourService, GuideTourService>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<ISightService, SightService>();
+            services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<ITourService, TourService>();
+            services.AddScoped<ITourSightService, TourSightService>();
+            services.AddScoped<IUserService, UserService>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMapperProfiles(this IServiceCollection services)
+        {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }

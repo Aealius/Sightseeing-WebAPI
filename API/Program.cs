@@ -14,7 +14,9 @@ namespace API
                 .ConfigureSwagger()
                 .ConfigureControllers()
                 .ConfigureApiExplorer()
-                .ConfigureRepositoryWrapper();
+                .ConfigureRepositoryWrapper()
+                .ConfigureAppServices()
+                .ConfigureMapperProfiles();
 
             var app = builder.Build();
 
