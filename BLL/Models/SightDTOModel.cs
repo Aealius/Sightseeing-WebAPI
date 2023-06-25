@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BLL.Models
+﻿namespace BLL.Models
 {
-    internal class SightDTOModel
+    public class SightDTOModel
     {
         public uint SightId { get; set; }
         public string? Note { get; set; }
