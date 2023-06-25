@@ -6,5 +6,6 @@ namespace DAL.Repository_Interfaces
     {
         Task<TourSight> GetAdditionalInfoByIdAsync(int idTour, int idSight);
         Task<IEnumerable<TourSight>> GetAdditionalInfoAllAsync();
+        Task DeleteAsync(int idTour, int idSight);
     }
 }

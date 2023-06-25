@@ -31,5 +31,13 @@ namespace DAL.Repositories
 
             return item;
         }
+
+        public async Task DeleteAsync(int idGuide, int idTour)//for m:m tables
+        {
+            var item = await _context.Set<GuideTour>()
+                                     .FirstOrDefaultAsync(gt => gt.GuideId.Equals(idGuide) && gt.TourId.Equals(idTour));
+
+            _context.Set<GuideTour>().Remove(item);
+        }
     }
 }

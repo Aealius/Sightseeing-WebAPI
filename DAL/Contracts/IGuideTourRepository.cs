@@ -6,5 +6,6 @@ namespace DAL.Repository_Interfaces
     {
         Task<GuideTour> GetAdditionalInfoByIdAsync(int idGuide, int idTour);
         Task<IEnumerable<GuideTour>> GetAdditionalInfoAllAsync();
+        Task DeleteAsync(int idGuide, int idTour);
     }
 }
