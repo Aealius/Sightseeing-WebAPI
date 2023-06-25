@@ -3,7 +3,7 @@ using DAL.Repository_Interfaces;
 
 namespace DAL.UnitOfWork
 {
-    internal class UnitOfWork : IUnitOfWork, IDisposable
+    public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly SightseeingdbContext _context;
 
