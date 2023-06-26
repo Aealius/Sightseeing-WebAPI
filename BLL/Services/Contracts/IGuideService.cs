@@ -8,6 +8,6 @@ namespace BLL.Services.Contracts
         Task DeleteAsync(int id);
         Task<List<GuideDTOModel>> GetAllAsync();
         Task<GuideDTOModel> GetByIdAsync(int id);
-        Task Update(int id, GuideDTOModel updateGuideDTO);
+        Task UpdateAsync(int id, GuideDTOModel updateGuideDTO);
     }
 }

@@ -60,7 +60,7 @@ namespace BLL.Services.Implementation
             return guideDTO;
         }
 
-        public async Task Update(int id, GuideDTOModel updateGuideDTO)
+        public async Task UpdateAsync(int id, GuideDTOModel updateGuideDTO)
         {
             var guide = _mapper.Map<Guide>(updateGuideDTO);
             await _unitOfWork.Guides.UpdateAsync(id, guide);
