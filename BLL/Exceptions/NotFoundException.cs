@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace BLL.Exceptions
 {
-    internal class WrongPasswordException : Exception
+    internal class NotFoundException : Exception
     {
-        public WrongPasswordException()
+        public NotFoundException()
         {
 
         }
 
-        public WrongPasswordException(string message) : base(message)
+        public NotFoundException(string message) : base(message)
         {
 
         }
