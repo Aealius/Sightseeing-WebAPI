@@ -23,13 +23,13 @@ namespace API.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<ActionResult<UserDTOModel>> GetAsync(int id)
+        public async Task<ActionResult<UserDTOModel>> GetAsync(uint id)
         {
             return Ok(await _service.GetByIdAsync(id));
         }
 
         [HttpPut("id")]
-        public async Task<IActionResult> UpdateAsync(int id, UserDTOModel model)
+        public async Task<IActionResult> UpdateAsync(uint id, UserDTOModel model)
         {
             if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != "1")
             {
@@ -54,7 +54,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("id")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(uint id)
         {
             await _service.DeleteAsync(id);
 

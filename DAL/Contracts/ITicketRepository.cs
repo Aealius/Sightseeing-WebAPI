@@ -4,7 +4,7 @@ namespace DAL.Repository_Interfaces
 {
     public interface ITicketRepository:IBaseRepository<Ticket>
     {
-        Task<Ticket> GetAdditionalInfoByIdAsync(int id);
+        Task<Ticket> GetAdditionalInfoByIdAsync(uint id);
         Task<IEnumerable<Ticket>> GetAdditionalInfoAllAsync();
     }
 }

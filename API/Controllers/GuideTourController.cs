@@ -30,7 +30,7 @@ namespace API.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteAsync(int guideId, int tourId)
+        public async Task<IActionResult> DeleteAsync(uint guideId, uint tourId)
         {
             await _service.DeleteAsync(guideId, tourId);
 

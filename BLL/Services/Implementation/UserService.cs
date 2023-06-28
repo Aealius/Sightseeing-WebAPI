@@ -26,7 +26,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             await _unitOfWork.Users.DeleteAsync(id);
 
@@ -45,7 +45,7 @@ namespace BLL.Services.Implementation
             return usersDTOList;
         }
 
-        public async Task<UserDTOModel> GetByIdAsync(int id)
+        public async Task<UserDTOModel> GetByIdAsync(uint id)
         {
             var user = await _unitOfWork.Users.GetByIdAsync(id);
 
@@ -59,7 +59,7 @@ namespace BLL.Services.Implementation
             return userDTO;
         }
 
-        public async Task UpdateAsync(int id, UserDTOModel updateUserDTO)
+        public async Task UpdateAsync(uint id, UserDTOModel updateUserDTO)
         {
             var user = _mapper.Map<User>(updateUserDTO);
             await _unitOfWork.Users.UpdateAsync(id, user);

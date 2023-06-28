@@ -24,7 +24,7 @@ namespace API.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<ActionResult<SightDTOModel>> GetAsync(int id)
+        public async Task<ActionResult<SightDTOModel>> GetAsync(uint id)
         {
             var result = await _service.GetByIdAsync(id);
             if (result == null)
@@ -37,7 +37,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "1")]
         [HttpPut("id")]
-        public async Task<IActionResult> UpdateAsync(int id, SightDTOModel model)
+        public async Task<IActionResult> UpdateAsync(uint id, SightDTOModel model)
         {
             await _service.UpdateAsync(id, model);
 
@@ -55,7 +55,7 @@ namespace API.Controllers
 
         [Authorize(Roles = "1")]
         [HttpDelete("id")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(uint id)
         {
             await _service.DeleteAsync(id);
 

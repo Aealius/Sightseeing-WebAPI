@@ -5,7 +5,7 @@ namespace BLL.Services.Contracts
     public interface ITourSightService
     {
         Task AddAsync(TourSightDTOModel addTourSightDTO);
-        Task DeleteAsync(int idTour, int idSight);
+        Task DeleteAsync(uint idTour, uint idSight);
         Task<List<TourSightDTOModel>> GetAllAsync();
     }
 }

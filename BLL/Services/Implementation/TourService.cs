@@ -26,7 +26,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             await _unitOfWork.Tours.DeleteAsync(id);
 
@@ -45,7 +45,7 @@ namespace BLL.Services.Implementation
             return toursDTOList;
         }
 
-        public async Task<TourDTOModel> GetByIdAsync(int id)
+        public async Task<TourDTOModel> GetByIdAsync(uint id)
         {
             var tour = await _unitOfWork.Tours.GetByIdAsync(id);
 
@@ -59,7 +59,7 @@ namespace BLL.Services.Implementation
             return tourDTO;
         }
 
-        public async Task UpdateAsync(int id, TourDTOModel updateTourDTO)
+        public async Task UpdateAsync(uint id, TourDTOModel updateTourDTO)
         {
             var tour = _mapper.Map<Tour>(updateTourDTO);
             await _unitOfWork.Tours.UpdateAsync(id, tour);

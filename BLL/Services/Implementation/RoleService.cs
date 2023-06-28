@@ -26,7 +26,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             await _unitOfWork.Roles.DeleteAsync(id);
 
@@ -45,7 +45,7 @@ namespace BLL.Services.Implementation
             return rolesDTOList;
         }
 
-        public async Task<RoleDTOModel> GetByIdAsync(int id)
+        public async Task<RoleDTOModel> GetByIdAsync(uint id)
         {
             var role = await _unitOfWork.Roles.GetByIdAsync(id);
 
@@ -59,7 +59,7 @@ namespace BLL.Services.Implementation
             return roleDTO;
         }
 
-        public async Task UpdateAsync(int id, RoleDTOModel updateRoleDTO)
+        public async Task UpdateAsync(uint id, RoleDTOModel updateRoleDTO)
         {
             var role = _mapper.Map<Role>(updateRoleDTO);
             await _unitOfWork.Roles.UpdateAsync(id, role);

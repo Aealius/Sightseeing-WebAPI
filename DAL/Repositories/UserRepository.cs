@@ -25,7 +25,7 @@ namespace DAL.Repositories
         }
 
         //gets one specified by id user object with add. info
-        public async Task<User> GetAdditionalInfoByIdAsync(int id)
+        public async Task<User> GetAdditionalInfoByIdAsync(uint id)
         {
             var item = await _context.Set<User>()
                                  .Include(user => user.Role)

@@ -22,13 +22,13 @@ namespace API.Controllers
         }
 
         [HttpGet("id")]
-        public async Task<ActionResult<GuideDTOModel>> GetAsync(int id)
+        public async Task<ActionResult<GuideDTOModel>> GetAsync(uint id)
         {
             return Ok(await _service.GetByIdAsync(id));
         }
 
         [HttpPut("id")]
-        public async Task<IActionResult> UpdateAsync(int id, GuideDTOModel model)
+        public async Task<IActionResult> UpdateAsync(uint id, GuideDTOModel model)
         {
             await _service.UpdateAsync(id, model);
 
@@ -44,7 +44,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("id")]
-        public async Task<IActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> DeleteAsync(uint id)
         {
             await _service.DeleteAsync(id);
 

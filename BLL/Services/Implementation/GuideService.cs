@@ -26,7 +26,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             await _unitOfWork.Guides.DeleteAsync(id);
 
@@ -46,7 +46,7 @@ namespace BLL.Services.Implementation
             return guidesDTOList;
         }
 
-        public async Task<GuideDTOModel> GetByIdAsync(int id)
+        public async Task<GuideDTOModel> GetByIdAsync(uint id)
         {
             var guide = await _unitOfWork.Guides.GetByIdAsync(id);
 
@@ -60,7 +60,7 @@ namespace BLL.Services.Implementation
             return guideDTO;
         }
 
-        public async Task UpdateAsync(int id, GuideDTOModel updateGuideDTO)
+        public async Task UpdateAsync(uint id, GuideDTOModel updateGuideDTO)
         {
             var guide = _mapper.Map<Guide>(updateGuideDTO);
             await _unitOfWork.Guides.UpdateAsync(id, guide);
