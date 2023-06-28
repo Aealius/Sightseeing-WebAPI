@@ -8,7 +8,7 @@ namespace BLL.MappConfigs
     {
         public UserMappConfig()
         {
-            CreateMap<User, UserDTOModel>(); 
+            CreateMap<User, UserDTOModel>().ReverseMap(); 
         }
     }
 }

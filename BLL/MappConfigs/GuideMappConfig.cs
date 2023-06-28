@@ -8,7 +8,7 @@ namespace BLL.MappConfigs
     {
         public GuideMappConfig()
         {
-            CreateMap<Guide, GuideDTOModel>(); 
+            CreateMap<Guide, GuideDTOModel>().ReverseMap(); 
         }
     }
 }

@@ -8,7 +8,7 @@ namespace BLL.MappConfigs
     {
         public TourSightMappConfig()
         {
-            CreateMap<TourSight, TourSightDTOModel>(); 
+            CreateMap<TourSight, TourSightDTOModel>().ReverseMap(); 
         }
     }
 }

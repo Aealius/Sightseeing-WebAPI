@@ -8,7 +8,7 @@ namespace BLL.MappConfigs
     {
         public SightMappConfig()
         {
-            CreateMap<Sight, SightDTOModel>(); 
+            CreateMap<Sight, SightDTOModel>().ReverseMap(); 
         }
     }
 }
