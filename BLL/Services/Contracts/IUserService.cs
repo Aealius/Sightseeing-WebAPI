@@ -9,5 +9,6 @@ namespace BLL.Services.Contracts
         Task<List<UserDTOModel>> GetAllAsync();
         Task<UserDTOModel> GetByIdAsync(uint id);
         Task UpdateAsync(uint id, UserDTOModel updateUserDTO);
+        uint GetTokenId(uint id);
     }
 }

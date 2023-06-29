@@ -1,8 +1,11 @@
 ﻿using Abp.Domain.Entities;
 using AutoMapper;
+using BLL.Exceptions;
 using BLL.Models;
 using BLL.Services.Contracts;
 using DAL.Entities;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 using IUnitOfWork = DAL.UnitOfWork.IUnitOfWork;
 
 namespace BLL.Services.Implementation
@@ -11,11 +14,13 @@ namespace BLL.Services.Implementation
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper)
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task AddAsync(UserDTOModel addUserDTO)
@@ -65,6 +70,17 @@ namespace BLL.Services.Implementation
             await _unitOfWork.Users.UpdateAsync(id, user);
 
             await _unitOfWork.SaveChangesAsync();
+        }
+
+        public uint GetTokenId(uint id)
+        {
+            if (_httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Role) != "admin")
+            {
+                uint tokenUserId = Convert.ToUInt32(_httpContextAccessor.HttpContext.User.FindFirstValue("UserID"));
+
+                return tokenUserId;
+            }
+            return 0;
         }
     }
 }

@@ -24,11 +24,7 @@ namespace API.Controllers
         [HttpGet("id")]
         public async Task<ActionResult<SightDTOModel>> GetAsync(uint id)
         {
-            var result = await _service.GetByIdAsync(id);
-            if (result == null)
-            {
-                return NotFound("Does not exist");
-            }
+            await _service.GetByIdAsync(id);
 
             return Ok();
         }

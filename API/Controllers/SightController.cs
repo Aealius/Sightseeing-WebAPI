@@ -26,16 +26,12 @@ namespace API.Controllers
         [HttpGet("id")]
         public async Task<ActionResult<SightDTOModel>> GetAsync(uint id)
         {
-            var result = await _service.GetByIdAsync(id);
-            if (result == null)
-            {
-                return NotFound("Does not exist");
-            }
+            await _service.GetByIdAsync(id);
 
             return Ok();
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "admin")]
         [HttpPut("id")]
         public async Task<IActionResult> UpdateAsync(uint id, SightDTOModel model)
         {
@@ -44,7 +40,7 @@ namespace API.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "admin")]
         [HttpPost("id")]
         public async Task<IActionResult> AddAsync(SightDTOModel model)
         {
@@ -53,7 +49,7 @@ namespace API.Controllers
             return Ok();
         }
 
-        [Authorize(Roles = "1")]
+        [Authorize(Roles = "admin")]
         [HttpDelete("id")]
         public async Task<IActionResult> DeleteAsync(uint id)
         {

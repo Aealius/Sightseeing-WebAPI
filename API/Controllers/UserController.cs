@@ -31,14 +31,10 @@ namespace API.Controllers
         [HttpPut("id")]
         public async Task<IActionResult> UpdateAsync(uint id, UserDTOModel model)
         {
-            if (HttpContext.User.FindFirstValue(ClaimTypes.Role) != "1")
+            uint tokenUserId = _service.GetTokenId(id);
+            if (tokenUserId != id)
             {
-                int tokenUserId = Convert.ToInt32(HttpContext.User.FindFirstValue("UserID"));
-
-                if (tokenUserId != id)
-                {
-                    return Unauthorized();
-                }
+                return Unauthorized();
             }
             await _service.UpdateAsync(id, model);
 
