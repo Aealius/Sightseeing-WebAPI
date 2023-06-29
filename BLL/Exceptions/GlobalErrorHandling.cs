@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL.Exceptions
 {
-    internal class GlobalErrorHandling
+    public class GlobalErrorHandling
     {
         private readonly RequestDelegate _next;
 
@@ -36,41 +36,38 @@ namespace BLL.Exceptions
             var stackTrace = String.Empty;
             string message;
             var exceptionType = exception.GetType();
-            if (exceptionType == typeof(InvalidRequestException))
+            switch (exceptionType.GetType().ToString())
             {
-                message = exception.Message;
-                status = HttpStatusCode.BadRequest;
-                stackTrace = exception.StackTrace;
-            }
-            else if (exceptionType == typeof(NotFoundException))
-            {
-                message = exception.Message;
-                status = HttpStatusCode.NotFound;
-                stackTrace = exception.StackTrace;
-            }
-            else if (exceptionType == typeof(NotImplementedException))
-            {
-                status = HttpStatusCode.NotImplemented;
-                message = exception.Message;
-                stackTrace = exception.StackTrace;
-            }
-            else if (exceptionType == typeof(UnauthorizedAccessException))
-            {
-                status = HttpStatusCode.Unauthorized;
-                message = exception.Message;
-                stackTrace = exception.StackTrace;
-            }
-            else if (exceptionType == typeof(KeyNotFoundException))
-            {
-                status = HttpStatusCode.Unauthorized;
-                message = exception.Message;
-                stackTrace = exception.StackTrace;
-            }
-            else
-            {
-                status = HttpStatusCode.InternalServerError;
-                message = exception.Message;
-                stackTrace = exception.StackTrace;
+                case "InvalidRequestException":
+                    message = exception.Message;
+                    status = HttpStatusCode.BadRequest;
+                    stackTrace = exception.StackTrace;
+                    break;
+                case "NotFoundException":
+                    message = exception.Message;
+                    status = HttpStatusCode.NotFound;
+                    stackTrace = exception.StackTrace;
+                    break;
+                case "NotImplementedException":
+                    status = HttpStatusCode.NotImplemented;
+                    message = exception.Message;
+                    stackTrace = exception.StackTrace;
+                    break;
+                case "UnauthorizedAccessException":
+                    status = HttpStatusCode.Unauthorized;
+                    message = exception.Message;
+                    stackTrace = exception.StackTrace;
+                    break;
+                case "KeyNotFoundException":
+                    status = HttpStatusCode.Unauthorized;
+                    message = exception.Message;
+                    stackTrace = exception.StackTrace;
+                    break;
+                default:
+                    status = HttpStatusCode.InternalServerError;
+                    message = exception.Message;
+                    stackTrace = exception.StackTrace;
+                    break;
             }
             var exceptionResult = JsonSerializer.Serialize(new
             {
