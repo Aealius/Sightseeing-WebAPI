@@ -39,7 +39,6 @@ namespace WebApp.Controllers
 
                 List<Claim> claims = new List<Claim>();
                 claims.Add(new Claim("Role", paramUser.RoleId.ToString()));
-                //claims.Add(new Claim("SeniorManager", paramUser.SeniorManager.ToString()));
                 claims.Add(new Claim(ClaimTypes.Email, paramUser.Email));
 
                 await _userManager.AddClaimsAsync(user, claims);
@@ -49,25 +48,6 @@ namespace WebApp.Controllers
                 return BadRequest();
             }
             return Ok();
-        }
-
-        private string GetToken(IdentityUser user, IEnumerable<Claim> princpal)
-        {
-            var claims = princpal.ToList();
-            claims.Add(new Claim(ClaimTypes.Name, user.UserName));
-
-            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey));
-
-            var jwt = new JwtSecurityToken(
-                issuer: _options.Issuer,
-                audience: _options.Audience,
-                claims: claims,
-                expires: DateTime.UtcNow.Add(TimeSpan.FromDays(1)),
-                notBefore: DateTime.UtcNow,
-                signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256)
-                );
-
-            return new JwtSecurityTokenHandler().WriteToken(jwt);
         }
 
         [HttpPost("SignIn")]
@@ -80,7 +60,7 @@ namespace WebApp.Controllers
             if (result.Succeeded)
             {
                 IEnumerable<Claim> claims = await _userManager.GetClaimsAsync(user);
-                var token = GetToken(user, claims);
+                var token = TokenServise.GetToken(user, claims, _options);
 
                 return Ok(token);
             }

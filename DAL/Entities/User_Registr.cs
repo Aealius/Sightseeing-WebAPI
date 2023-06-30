@@ -10,7 +10,6 @@ namespace DAL.Entities
     public class User_Registr : User_Auth
     {
         public string Nickname { get; set; } = null!;
-        [Required]
         public uint RoleId { get; set; }
     }
 }
