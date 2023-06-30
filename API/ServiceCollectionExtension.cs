@@ -103,6 +103,8 @@ namespace API
             {
                 option.AddPolicy("OnlyAdmin", policyBuilder => policyBuilder.RequireClaim("Role", "1"));
             });
+
+            return services;
         }
 
         public static IServiceCollection ConfigureAppServices(this IServiceCollection services)

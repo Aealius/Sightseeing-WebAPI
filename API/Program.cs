@@ -20,7 +20,7 @@ namespace API
                 .ConfigureControllers()
                 .ConfigureApiExplorer()
                 .ConfigureRepositoryWrapper()
-                .ConfigureAuth(builder.Configuration);
+                .ConfigureAuth(builder.Configuration)
                 .ConfigureAppServices()
                 .ConfigureMapperProfiles();
 
