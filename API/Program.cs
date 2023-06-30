@@ -1,5 +1,10 @@
 using DAL;
+using BLL;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace API
 {
@@ -15,6 +20,7 @@ namespace API
                 .ConfigureControllers()
                 .ConfigureApiExplorer()
                 .ConfigureRepositoryWrapper()
+                .ConfigureAuth(builder.Configuration);
                 .ConfigureAppServices()
                 .ConfigureMapperProfiles();
 
@@ -29,8 +35,8 @@ namespace API
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

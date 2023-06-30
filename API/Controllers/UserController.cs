@@ -1,4 +1,9 @@
-﻿using BLL.Models;
+using DAL;
+using DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using BLL.Models;
 using BLL.Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -7,6 +12,7 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+
     public class UserController : ControllerBase
     {
         private readonly IUserService _service;
