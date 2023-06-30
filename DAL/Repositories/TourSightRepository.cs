@@ -22,14 +22,22 @@ namespace DAL.Repositories
             return items;
         }
 
-        public async Task<TourSight> GetAdditionalInfoByIdAsync(int idTour, int idSight)
+        public async Task<TourSight> GetAdditionalInfoByIdAsync(uint idTour, uint idSight)
         {
             var item = await _context.Set<TourSight>()
                                      .Include(ts => ts.Tour)
                                      .Include(ts => ts.Sight)
-                                     .FirstOrDefaultAsync(ts => ts.TourId == idTour && ts.SightId == idSight);
+                                     .FirstOrDefaultAsync(ts => ts.TourId.Equals(idTour) && ts.SightId.Equals(idSight));
 
             return item;
+        }
+
+        public async Task DeleteAsync(uint idTour, uint idSight)//for m:m tables
+        {
+            var item = await _context.Set<TourSight>()
+                                     .FirstOrDefaultAsync(ts => ts.TourId.Equals(idTour) && ts.SightId.Equals(idSight));
+
+            _context.Set<TourSight>().Remove(item);
         }
     }
 }

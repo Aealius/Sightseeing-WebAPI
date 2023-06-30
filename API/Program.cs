@@ -21,6 +21,8 @@ namespace API
                 .ConfigureApiExplorer()
                 .ConfigureRepositoryWrapper()
                 .ConfigureAuth(builder.Configuration);
+                .ConfigureAppServices()
+                .ConfigureMapperProfiles();
 
             var app = builder.Build();
 

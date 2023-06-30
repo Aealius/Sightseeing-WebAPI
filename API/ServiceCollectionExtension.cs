@@ -1,4 +1,6 @@
-﻿using BLL;
+using BLL;
+using BLL.Services.Contracts;
+using BLL.Services.Implementation;
 using DAL;
 using DAL.UnitOfWork;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -58,6 +60,7 @@ namespace API
         }
 
 
+
         public static IServiceCollection ConfigureAuth(this IServiceCollection services, IConfiguration configuration)
         {
 
@@ -100,6 +103,26 @@ namespace API
             {
                 option.AddPolicy("OnlyAdmin", policyBuilder => policyBuilder.RequireClaim("Role", "1"));
             });
+        }
+
+        public static IServiceCollection ConfigureAppServices(this IServiceCollection services)
+        {
+            services.AddScoped<IGuideService, GuideService>();
+            services.AddScoped<IGuideTourService, GuideTourService>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<IRoleService, RoleService>();
+            services.AddScoped<ISightService, SightService>();
+            services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<ITourService, TourService>();
+            services.AddScoped<ITourSightService, TourSightService>();
+            services.AddScoped<IUserService, UserService>();
+
+            return services;
+        }
+
+        public static IServiceCollection ConfigureMapperProfiles(this IServiceCollection services)
+        {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             return services;
         }

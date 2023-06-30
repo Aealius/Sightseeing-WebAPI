@@ -21,7 +21,7 @@ namespace DAL.Repositories
             return items;                           
         }
 
-        public async Task<Role> GetAdditionalInfoByIdAsync(int id)
+        public async Task<Role> GetAdditionalInfoByIdAsync(uint id)
         {
             var item = await _context.Set<Role>()
                                      .Include(r => r.Users)

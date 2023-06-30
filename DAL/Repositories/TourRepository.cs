@@ -24,7 +24,7 @@ namespace DAL.Repositories
             return items;
         }
 
-        public async Task<Tour> GetAdditionalInfoByIdAsync(int id)
+        public async Task<Tour> GetAdditionalInfoByIdAsync(uint id)
         {
             var item = await _context.Set<Tour>()
                                      .Include(t => t.GuideTours)
