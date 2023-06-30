@@ -5,9 +5,9 @@ namespace BLL.Services.Contracts
     public interface IGuideService
     {
         Task AddAsync(GuideDTOModel guideDTO);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(uint id);
         Task<List<GuideDTOModel>> GetAllAsync();
-        Task<GuideDTOModel> GetByIdAsync(int id);
-        Task UpdateAsync(int id, GuideDTOModel updateGuideDTO);
+        Task<GuideDTOModel> GetByIdAsync(uint id);
+        Task UpdateAsync(uint id, GuideDTOModel updateGuideDTO);
     }
 }

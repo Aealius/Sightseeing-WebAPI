@@ -6,9 +6,9 @@ namespace DAL.Repository_Interfaces
     public interface IBaseRepository<TEntity>
     {
         Task <IEnumerable<TEntity>> GetAllAsync();
-        Task <TEntity> GetByIdAsync(int id);
+        Task <TEntity> GetByIdAsync(uint id);
         Task AddAsync(TEntity item);
-        Task UpdateAsync(int id, TEntity item);
-        Task DeleteAsync(int id);
+        Task UpdateAsync(uint id, TEntity item);
+        Task DeleteAsync(uint id);
     }
 }

@@ -17,7 +17,7 @@ namespace DAL.Repositories
             await _context.AddAsync(item);
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             var entityToDelete = await _context.FindAsync<TEntity>(id);
             _context.Remove(entityToDelete);
@@ -30,12 +30,12 @@ namespace DAL.Repositories
                                  .ToListAsync();
         }
 
-        public async Task<TEntity> GetByIdAsync(int id)
+        public async Task<TEntity> GetByIdAsync(uint id)
         {
             return await _context.FindAsync<TEntity>(id);
         }
 
-        public async Task UpdateAsync(int id, TEntity item)
+        public async Task UpdateAsync(uint id, TEntity item)
         {
             var entityToUpdate = await _context.FindAsync<TEntity>(id);
             _context.Entry<TEntity>(entityToUpdate).CurrentValues.SetValues(item);

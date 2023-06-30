@@ -8,7 +8,7 @@ namespace BLL.MappConfigs
     {
         public TicketMappConfig()
         {
-            CreateMap<Ticket, TicketDTOModel>(); 
+            CreateMap<Ticket, TicketDTOModel>().ReverseMap(); 
         }
     }
 }

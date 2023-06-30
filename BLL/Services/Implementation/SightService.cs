@@ -26,7 +26,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             await _unitOfWork.Sights.DeleteAsync(id);
 
@@ -45,7 +45,7 @@ namespace BLL.Services.Implementation
             return sightsDTOList;
         }
 
-        public async Task<SightDTOModel> GetByIdAsync(int id)
+        public async Task<SightDTOModel> GetByIdAsync(uint id)
         {
             var sight = await _unitOfWork.Sights.GetByIdAsync(id);
 
@@ -59,7 +59,7 @@ namespace BLL.Services.Implementation
             return sightDTO;
         }
 
-        public async Task UpdateAsync(int id, SightDTOModel updateSightDTO)
+        public async Task UpdateAsync(uint id, SightDTOModel updateSightDTO)
         {
             var sight = _mapper.Map<Sight>(updateSightDTO);
             await _unitOfWork.Sights.UpdateAsync(id, sight);

@@ -23,7 +23,7 @@ namespace DAL.Repositories
             return items;
         }
 
-        public async Task<Sight> GetAdditionalInfoByIdAsync(int id)
+        public async Task<Sight> GetAdditionalInfoByIdAsync(uint id)
         {
             var item = await _context.Set<Sight>()
                                      .Include(s => s.Reviews)

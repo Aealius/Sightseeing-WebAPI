@@ -25,7 +25,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int guideId, int tourId)
+        public async Task DeleteAsync(uint guideId, uint tourId)
         {
             await _unitOfWork.GuideTours.DeleteAsync(guideId, tourId);
 

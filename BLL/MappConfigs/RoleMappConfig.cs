@@ -8,7 +8,7 @@ namespace BLL.MappConfigs
     {
         public RoleMappConfig()
         {
-            CreateMap<Role, RoleDTOModel>();
+            CreateMap<Role, RoleDTOModel>().ReverseMap();
         }
     }
 }

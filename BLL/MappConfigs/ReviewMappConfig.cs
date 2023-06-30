@@ -8,7 +8,7 @@ namespace BLL.MappConfigs
     {
         public ReviewMappConfig()
         {
-            CreateMap<Review, ReviewDTOModel>();
+            CreateMap<Review, ReviewDTOModel>().ReverseMap();
         }
     }
 }

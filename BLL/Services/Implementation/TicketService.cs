@@ -26,7 +26,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             await _unitOfWork.Tickets.DeleteAsync(id);
 
@@ -45,7 +45,7 @@ namespace BLL.Services.Implementation
             return ticketsDTOList;
         }
 
-        public async Task<TicketDTOModel> GetByIdAsync(int id)
+        public async Task<TicketDTOModel> GetByIdAsync(uint id)
         {
             var ticket = await _unitOfWork.Tickets.GetByIdAsync(id);
 
@@ -59,7 +59,7 @@ namespace BLL.Services.Implementation
             return ticketDTO;
         }
 
-        public async Task UpdateAsync(int id, TicketDTOModel updateTicketDTO)
+        public async Task UpdateAsync(uint id, TicketDTOModel updateTicketDTO)
         {
             var ticket = _mapper.Map<Ticket>(updateTicketDTO);
             await _unitOfWork.Tickets.UpdateAsync(id, ticket);

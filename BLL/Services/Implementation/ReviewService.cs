@@ -26,7 +26,7 @@ namespace BLL.Services.Implementation
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(uint id)
         {
             await _unitOfWork.Reviews.DeleteAsync(id);
 
@@ -45,7 +45,7 @@ namespace BLL.Services.Implementation
             return reviewsDTOList;
         }
 
-        public async Task<ReviewDTOModel> GetByIdAsync(int id)
+        public async Task<ReviewDTOModel> GetByIdAsync(uint id)
         {
             var review = await _unitOfWork.Reviews.GetByIdAsync(id);
 
@@ -59,7 +59,7 @@ namespace BLL.Services.Implementation
             return reviewDTO;
         }
 
-        public async Task UpdateAsync(int id, ReviewDTOModel updateReviewDTO)
+        public async Task UpdateAsync(uint id, ReviewDTOModel updateReviewDTO)
         {
             var review = _mapper.Map<Review>(updateReviewDTO);
             await _unitOfWork.Reviews.UpdateAsync(id, review);
